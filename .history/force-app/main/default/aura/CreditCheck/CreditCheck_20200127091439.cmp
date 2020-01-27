@@ -1,0 +1,40 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:lightningQuickActionWithoutHeader" controller="CaseHandler">
+    Hy There 
+    <aura:attribute name="createNewCase" type="Case" default="{'sObjectType' : 'Case',
+                                                            'Subject' : '',
+                                                            'Status' : ''}"/>
+    <aura:attribute name="objectName" type="String" default="Case"/>
+    <aura:attribute name="fieldName" type="String" default="Credit_Check_Status__c"/>
+    <aura:attribute name="creditCheckList" type="List"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <div class="slds-p-around_small">
+        <lightning:input type="Text" label="Subject" value="{!v.createCase.Subject}"/>
+        <lightning:input type="Text" label="Description" value="{!v.createCase.Description}"/>
+        <lightning:select label="Credit Check Status" value="{!v.createCase.Credit_Check_Status__c}">
+        <option value="">—None—</option>
+        <aura:iteration items="{!v.creditCheckList}" var="cc">
+            <option value="{!cc}">{!cc}</option>
+        </aura:iteration>
+        </lightning:select>
+        <lightning:button label="Save" iconPosition="left" variant="brand" onclick="{!c.doSave}"/>
+        <lightning:button label="Cancel" iconPosition="right" variant="destructive" onclick="{!c.closeModal}"/>
+    </div>    
+    <!--<lightning:layout>
+        <lightning:layoutItem flexibility="auto"
+                              padding="around-small"
+                              size="3"
+                              largeDeviceSize="3"
+                              mediumDeviceSize="3"
+                              smallDeviceSize="6">
+            <lightning:button variant="brand" label="Submit" onclick="{!c.createCase}"/>                                             
+        </lightning:layoutItem>
+        <lightning:layoutItem flexibility="auto"
+                              padding="around-small"
+                              size="3"
+                              largeDeviceSize="3"
+                              mediumDeviceSize="3"
+                              smallDeviceSize="6">                 
+            <lightning:button variant="neutral" label="Cancel" onclick="{!c.closeModal}"/>                         
+        </lightning:layoutItem>
+    </lightning:layout>-->
+</aura:component>

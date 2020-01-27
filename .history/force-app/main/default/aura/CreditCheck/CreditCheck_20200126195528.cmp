@@ -1,0 +1,105 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:lightningQuickActionWithoutHeader" controller="CaseHandler">
+    Hy There
+    <!--<aura:attribute name="newCase" type="Case"
+     default="{ 'sobjectType': 'Case',
+                            'Subject': '',
+                     'Origin': '',
+                     'Status': '',
+                     'Contact': '',
+                     'Credit_Check_Status__c': ''
+                   }"/>
+    <div class="container">
+        <form class="slds-formstacked">
+          <div class="slds-form-element slds-is-required">
+         <div class="slds-form-element__control">
+           <ui:inputText aura:id="subject" label="Subject"
+                         class="slds-input"
+                         labelClass="slds-form-element__label"
+                         value=""
+                         required="false"/>
+          </div>
+        </div>
+        <div class="slds-form-element slds-is-required">
+          <div class="slds-form-element__control">
+            <ui:inputText aura:id="origin" label="Origin"
+                            class="slds-input"
+                            labelClass="slds-form-element__label"
+                            value=""
+                            required="false"/>
+           </div>
+         </div>
+         <div class="slds-form-element">
+           <div class="slds-form-element__control">
+             <ui:inputText aura:id="status" label="Status"
+                           class="slds-input"
+                           labelClass="slds-form-element__label"
+                           value="{!v.record.Status}" 
+                           required="true"/>
+            </div>
+          </div>
+          <div class="slds-form-element">
+            <div class="slds-form-element__control">
+              <ui:inputText aura:id="contact" label="Contact Name"
+                                class="slds-input"
+                                labelClass="slds-form-element__label"
+                                value="" 
+                                required="false"/>
+             </div>
+           </div>
+           <div class="slds-form-element">
+            <div class="slds-form-element__control">
+              <ui:inputText aura:id="CreditCheck" label="Credit Check Status"
+                                class="slds-input"
+                                labelClass="slds-form-element__label"
+                                value="" 
+                                required="false"/>
+             </div>
+           </div>
+           <div class="slds-form-element">
+             <ui:button label="Submit" 
+                        class="slds-button slds-buttonneutral"
+                        labelClass="label"
+                        press="{!c.createCase}"/>
+            </div>
+          </form>
+         </div>   -->  
+    <aura:attribute name="createCase" type="Case" default="{'sObjectType' : 'Case',
+                                                            'Name' : '',
+                                                            'Rating' : ''}"/>
+    <aura:attribute name="objName" type="String" default="Case"/>
+    <aura:attribute name="fldName" type="String" default="Rating"/>
+    <aura:attribute name="ratingList" type="List"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <div class="slds-p-around_small">
+        <lightning:input type="Text" label="Name" value="{!v.createCase.Name}"/>
+        <lightning:input type="Text" label="Account Number" value="{!v.createCase.AccountNumber}"/>
+        <lightning:input type="Email" name="email2" value="{!v.createCase.Email}" label="Email ID"/>
+        <lightning:input type="Phone" label="Phone Number" value="{!v.createCase.Phone}"/>
+        <lightning:select label="Rating" value="{!v.createCase.Rating}">
+        <option value="">—None—</option>
+        <aura:iteration items="{!v.ratingList}" var="ac">
+            <option value="{!ac}">{!ac}</option>
+        </aura:iteration>
+        </lightning:select>
+        <lightning:button label="Save" iconPosition="left" variant="brand" onclick="{!c.doSave}"/>
+        <lightning:button label="Cancel" iconPosition="right" variant="destructive" onclick="{!c.docancel}"/>
+    </div>    
+    <!--<lightning:layout>
+        <lightning:layoutItem flexibility="auto"
+                              padding="around-small"
+                              size="3"
+                              largeDeviceSize="3"
+                              mediumDeviceSize="3"
+                              smallDeviceSize="6">
+            <lightning:button variant="brand" label="Submit" onclick="{!c.createCase}"/>                                             
+        </lightning:layoutItem>
+        <lightning:layoutItem flexibility="auto"
+                              padding="around-small"
+                              size="3"
+                              largeDeviceSize="3"
+                              mediumDeviceSize="3"
+                              smallDeviceSize="6">                 
+            <lightning:button variant="neutral" label="Cancel" onclick="{!c.closeModal}"/>                         
+        </lightning:layoutItem>
+    </lightning:layout>-->
+</aura:component>

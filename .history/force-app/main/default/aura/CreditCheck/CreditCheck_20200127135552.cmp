@@ -1,0 +1,47 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:lightningQuickActionWithoutHeader,force:hasRecordId,force:hasSObjectName" controller="CaseHandler" access="global">
+    <aura:attribute name="record" type="Account"/>
+    <aura:attribute name="recordId" type="String" default=""/>
+    <aura:attribute name="createNewCase" type="Case" default="{'sObjectType' : 'Case',
+                                                            'Subject' : '',
+                                                            'Status' : ''}"/>
+    <aura:attribute name="objectName" type="String" default="Case"/>
+    <aura:attribute name="fieldNameStatus" type="String" default="Status"/>
+    <aura:attribute name="statusList" type="List"/>
+    <aura:attribute name="fieldNameCreditCheck" type="String" default="Credit_Check_Status__c"/>
+    <aura:attribute name="creditCheckList" type="List"/>
+    <aura:attribute name="fieldNameOrigin" type="String" default="Origin"/>
+    <aura:attribute name="originList" type="List"/>
+    <aura:attribute name="fieldNamePriority" type="String" default="Priority"/>
+    <aura:attribute name="priorityList" type="List"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+        <lightning:input type="Text" label="Subject" value="{!v.createNewCase.Subject}"/>
+        <lightning:input type="Text" label="Description" value="{!v.createNewCase.Description}"/>
+        <label>Account Name</label><br/>
+        <lightning:formattedUrl value="{!'/'+v.recordId}" label="{!v.record.Name}"/>
+        <lightning:select label="Status" value="{!v.createNewCase.Status}" required="true">
+          <option value="">—None—</option>
+          <aura:iteration items="{!v.statusList}" var="sl">
+              <option value="{!sl}">{!sl}</option>
+          </aura:iteration>
+        </lightning:select>
+        <lightning:select label="Credit Check Status" value="{!v.createNewCase.Credit_Check_Status__c}" required="true">
+          <option value="">—None—</option>
+          <aura:iteration items="{!v.creditCheckList}" var="ccl">
+              <option value="{!ccl}">{!ccl}</option>
+          </aura:iteration>
+        </lightning:select>
+        <lightning:select label="Origin" value="{!v.createNewCase.Origin}">
+          <option value="">—None—</option>
+          <aura:iteration items="{!v.originList}" var="ol">
+              <option value="{!ol}">{!ol}</option>
+          </aura:iteration>
+        </lightning:select>
+        <lightning:select label="Priority" value="{!v.createNewCase.Priority}">
+          <option value="">—None—</option>
+          <aura:iteration items="{!v.priorityList}" var="pl">
+              <option value="{!pl}">{!pl}</option>
+          </aura:iteration>
+        </lightning:select>
+        <lightning:button label="Save" iconPosition="left" variant="brand" onclick="{!c.doSave}"/>
+        <lightning:button label="Cancel" iconPosition="right" variant="destructive" onclick="{!c.closeModal}"/> 
+</aura:component>

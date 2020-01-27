@@ -1,0 +1,35 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:lightningQuickActionWithoutHeader,force:hasRecordId,force:hasSObjectName" controller="CaseHandler" access="global">
+    Hy There <br/>
+    <aura:attribute name="record" type="Account"/>
+    <aura:attribute name="recordId" type="String" default=""/>
+    <aura:attribute name="createNewCase" type="Case" default="{'sObjectType' : 'Case',
+                                                            'Subject' : '',
+                                                            'Status' : ''}"/>
+    <aura:attribute name="objectName" type="String" default="Case"/>
+    <aura:attribute name="fieldNameStatus" type="String" default="Status"/>
+    <aura:attribute name="statusList" type="List"/>
+    <aura:attribute name="fieldNameCreditCheck" type="String" default="Credit_Check_Status__c"/>
+    <aura:attribute name="creditCheckList" type="List"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <div class="slds-p-around_small">
+        <lightning:input type="Text" label="Subject" value="{!v.createNewCase.Subject}"/>
+        <lightning:input type="Text" label="Description" value="{!v.createNewCase.Description}"/>
+        <lightning:input type="Text" label="Account Name">
+            <lightning:formattedUrl value="{!'/'+v.recordId}" label="{!v.record.Name}"/>
+        </lightning:input>
+        <lightning:select label="Status" value="{!v.createNewCase.Status}" required="true">
+          <option value="">—None—</option>
+          <aura:iteration items="{!v.statusList}" var="sl">
+              <option value="{!sl}">{!sl}</option>
+          </aura:iteration>
+        </lightning:select>
+        <lightning:select label="Credit Check Status" value="{!v.createNewCase.Credit_Check_Status__c}" required="true">
+          <option value="">—None—</option>
+          <aura:iteration items="{!v.creditCheckList}" var="ccl">
+              <option value="{!ccl}">{!ccl}</option>
+          </aura:iteration>
+        </lightning:select>
+        <lightning:button label="Save" iconPosition="left" variant="brand" onclick="{!c.doSave}"/>
+        <lightning:button label="Cancel" iconPosition="right" variant="destructive" onclick="{!c.closeModal}"/>
+    </div>    
+</aura:component>

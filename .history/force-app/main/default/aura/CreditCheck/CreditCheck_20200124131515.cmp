@@ -1,0 +1,3 @@
+<aura:component implements="flexipage:availableForAllPageTypes" implements="force:lightningQuickActionWithoutHeader">
+    Hy There
+</aura:component>	

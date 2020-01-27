@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Submit_Button_Alert</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>pop error if the required fields are empty</shortDescription>
+        <value>Please select a Status and a Credit Check Status from picklist!</value>
+    </labels>
+</CustomLabels>

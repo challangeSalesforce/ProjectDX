@@ -1,0 +1,14 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:lightningQuickActionWithoutHeader">
+    Hy There
+    <lightning:layout>
+            <lightning:layoutItem   flexibility="auto"
+                                    padding="around-small"
+                                    size="3"
+                                    largeDeviceSize="3"
+                                    mediumDeviceSize="3"
+                                    smallDeviceSize="6">
+            <lightning:button variant="neutral" label="Cancel" onclick="{!c.closeModal}"/>                        
+                
+            </lightning:layoutItem>
+    </lightning:layout>
+</aura:component>
